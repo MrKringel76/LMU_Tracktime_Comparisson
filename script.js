@@ -74,6 +74,8 @@ const TRACKS = [
   ]},
 ];
 
+let LAPTIMES = {}; // wird aus data.json geladen
+
 const CLASSES = ["GTP", "LMP2", "GTE", "LMGT3", "LMP3"];
 const DRIVERS = { stefan: "Stefan", joel: "Joel" };
 const ANIM_MS = 6000; // Dauer der Animation (Runde des Schnelleren)
@@ -437,6 +439,18 @@ function renderZoom(pts, path, L, ratio, fast, slow) {
 // ============================================================
 //  START
 // ============================================================
-renderScore();
-renderTabs();
-renderTable();
+// Zeiten aus data.json laden (wird über "+ Neue Zeit" gefüllt)
+async function loadTimes() {
+  try {
+    const r = await fetch(`data.json?t=${Date.now()}`, { cache: "no-store" });
+    if (r.ok) return await r.json();
+  } catch {}
+  return {};
+}
+
+(async function init() {
+  LAPTIMES = await loadTimes();
+  renderScore();
+  renderTabs();
+  renderTable();
+})();

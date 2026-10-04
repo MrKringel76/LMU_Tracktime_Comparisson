@@ -462,3 +462,40 @@ footer {
   .m-zoom.show { display: block; }
 }
 footer a { color: var(--muted); }
+
+/* ================= ADMIN ================= */
+.nav-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.btn {
+  font: inherit; font-weight: 700; font-size: .9rem;
+  border-radius: 999px; padding: 7px 16px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--bg-2); color: var(--text);
+  transition: background .15s, border-color .15s, opacity .15s;
+}
+.btn:hover { border-color: #4a5068; }
+.btn[hidden] { display: none; }
+.btn-add { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn-add:hover { background: #ff1a14; border-color: #ff1a14; }
+.btn:disabled { opacity: .6; cursor: wait; }
+.btn-wide { width: 100%; padding: 11px; margin-top: 6px; border-radius: 10px; }
+.dlg { z-index: 60; }
+.dlg-card { width: min(460px, 100%); display: flex; flex-direction: column; gap: 12px; }
+.dlg-card h3 { font-size: 1.6rem; font-weight: 900; font-style: italic; text-transform: uppercase; }
+.dlg-card label { display: flex; flex-direction: column; gap: 5px; font-size: .8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.dlg-card input, .dlg-card select {
+  font: inherit; font-size: 1rem; font-weight: 600; text-transform: none; letter-spacing: 0;
+  color: var(--text); background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 9px 11px;
+}
+.dlg-card select:disabled { opacity: .7; }
+.dlg-card input:focus, .dlg-card select:focus { outline: none; border-color: var(--accent); }
+#inTime { font-family: var(--mono); font-size: 1.2rem; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-err { color: #ff5a52; font-size: .9rem; min-height: 0; }
+.form-err:empty, .form-ok:empty { display: none; }
+.form-ok { color: var(--win); font-size: .9rem; font-weight: 600; }
+.form-hint { color: var(--muted); font-size: .85rem; margin-top: -6px; }
+.muted { color: var(--muted); font-weight: 500; text-transform: none; letter-spacing: 0; }
+.linkbtn { font: inherit; background: none; border: 0; color: var(--stefan); cursor: pointer; text-decoration: underline; padding: 0; }
+@media (max-width: 640px) {
+  .nav-link { display: none; }
+  .btn { padding: 6px 12px; font-size: .82rem; }
+}

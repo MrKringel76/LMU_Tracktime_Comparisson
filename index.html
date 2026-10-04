@@ -21,7 +21,12 @@
 
     <nav class="topbar">
       <div class="logo"><span class="logo-mark"></span>LMU<span>TRACKER</span></div>
-      <a href="#times" class="nav-link">Zu den Zeiten ↓</a>
+      <div class="nav-right">
+        <a href="#times" class="nav-link">Zu den Zeiten ↓</a>
+        <button class="btn btn-add" id="btnAdd" hidden>+ Neue Zeit</button>
+        <button class="btn btn-ghost" id="btnLogout" hidden>Logout</button>
+        <button class="btn btn-ghost" id="btnLogin">Login</button>
+      </div>
     </nav>
 
     <div class="hero-content">
@@ -111,8 +116,49 @@
     </div>
   </div>
 
+  <!-- ============ LOGIN ============ -->
+  <div class="modal dlg" id="dlgLogin" aria-hidden="true">
+    <div class="modal-backdrop" data-close-dlg="dlgLogin"></div>
+    <form class="modal-card dlg-card" id="formLogin" autocomplete="on">
+      <button type="button" class="modal-close" data-close-dlg="dlgLogin" aria-label="Schliessen">✕</button>
+      <h3>Login</h3>
+      <label>Benutzername<input id="inUser" autocomplete="username" required></label>
+      <label>Passwort<input id="inPw" type="password" autocomplete="current-password" required></label>
+      <p class="form-err" id="loginErr"></p>
+      <button class="btn btn-add btn-wide" type="submit">Anmelden</button>
+    </form>
+  </div>
+
+  <!-- ============ NEUE ZEIT ============ -->
+  <div class="modal dlg" id="dlgAdd" aria-hidden="true">
+    <div class="modal-backdrop" data-close-dlg="dlgAdd"></div>
+    <form class="modal-card dlg-card" id="formAdd">
+      <button type="button" class="modal-close" data-close-dlg="dlgAdd" aria-label="Schliessen">✕</button>
+      <h3>Neue Zeit</h3>
+      <div class="form-grid">
+        <label>Klasse<select id="inClass"></select></label>
+        <label>Person
+          <select id="inDriver"><option value="stefan">Stefan</option><option value="joel">Joel</option></select>
+        </label>
+      </div>
+      <label>Strecke<select id="inTrack"></select></label>
+      <label>Layout<select id="inLayout"></select></label>
+      <label>Rundenzeit<input id="inTime" placeholder="1:47.312" inputmode="decimal" autocomplete="off" required></label>
+      <p class="form-hint" id="curTime"></p>
+      <div id="tokenRow">
+        <label>GitHub-Token <span class="muted">(nur einmal pro Gerät nötig)</span>
+          <input id="inToken" type="password" placeholder="github_pat_…" autocomplete="off">
+        </label>
+      </div>
+      <p class="form-hint" id="tokenSaved" hidden>GitHub-Token ist gespeichert. <button type="button" class="linkbtn" id="btnForgetToken">Token ändern</button></p>
+      <p class="form-err" id="addErr"></p>
+      <p class="form-ok" id="addOk"></p>
+      <button class="btn btn-add btn-wide" id="btnSave" type="submit">Speichern</button>
+    </form>
+  </div>
+
   <script src="tracks-geo.js"></script>
-  <script src="data.js"></script>
   <script src="script.js"></script>
+  <script src="admin.js"></script>
 </body>
 </html>
