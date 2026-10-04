@@ -44,7 +44,8 @@ async function ghWrite(token, data, sha, message) {
   if (sha) body.sha = sha;
   const r = await fetch(ghUrl(), { method: "PUT", headers: ghHeaders(token), body: JSON.stringify(body) });
   if (r.status === 401 || r.status === 403) throw new Error("Token ungültig oder ohne Schreibrecht.");
-  if (r.status === 409) throw new Error("Konflikt – bitte nochmal speichern.");
+  if (r.status === 404) throw new Error("Token hat keinen Zugriff auf das Repo (Repository access prüfen).");
+  if (r.status === 409 || r.status === 422) throw new Error("Konflikt – bitte nochmal speichern.");
   if (!r.ok) throw new Error(`GitHub-Fehler ${r.status}`);
 }
 
